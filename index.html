@@ -144,21 +144,43 @@
             Contact
             <span>+</span>
         </div>
-    <div class="accordion-content">
-            <p>
-                Email: 
-                    <span id="emailCopy" style="cursor:pointer; color:blue;">
-                    capexcat@proton.me
-                </span>
-            </p>
+            <div class="accordion-content">
+                <p>
+                    Email: 
+                        <span id="emailCopy" style="cursor:pointer; color:blue; position:relative;">
+                            capexcat@proton.me
+                                <span id="copiedMsg" style="
+                                visibility:hidden;
+                                opacity:0;
+                                transition:opacity 0.3s;
+                                position:absolute;
+                                left:0;
+                                top:120%;
+                                font-size:12px;
+                                color:green;
+                                ">
+                            Copied ✓
+                            </span>
+                    </span>
+                </p>
         </div>
 
 <script>
-document.getElementById("emailCopy").addEventListener("click", function() {
-    const text = this.innerText;
+const email = document.getElementById("emailCopy");
+const msg = document.getElementById("copiedMsg");
 
-    navigator.clipboard.writeText(text)
-        .then(() => alert("Email copied!"));
+email.addEventListener("click", function() {
+    const text = this.innerText.replace("Copied ✓", "").trim();
+
+    navigator.clipboard.writeText(text).then(() => {
+        msg.style.visibility = "visible";
+        msg.style.opacity = "1";
+
+        setTimeout(() => {
+            msg.style.opacity = "0";
+            msg.style.visibility = "hidden";
+        }, 1500);
+    });
 });
 </script>
     </div>
