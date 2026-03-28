@@ -113,7 +113,7 @@
     <h1>Asynchronous Process Call Injection</h1>
     <p class="subtitle">Executing shellcode within a process.</p>
       <p>
-          This entry aims to explain <b>what is an Asynchronous Process Call, how does it work and how it can be exploited </b> to execute shellcode.
+          This entry aims to explain <b>what is an Asynchronous Process Call, how does it work and how it can be exploited </b> to execute shellcode.<br>
           <i>Please note that this dwells deep on the inner workings of a computer so if you aren't familiar with processes, assembly and OS structuring, it's going to be quite hard to understand.</i>
       </p>
           
@@ -139,7 +139,14 @@
             <dl>
                 <dt><b>1. Invocation</b></dt>
                 <dd>The main program invokes a function which is handled to a system API.</dd>
-                <dt><b>2. </b></dt>
+                <dt><b>2. Exchange</b></dt>
+                <dd>The API captures the parameters and returns control to the program which received a placeholder.</dd>
+                <dt><b>3. Background Execution</b></dt>
+                <dd>The API takes care of the task in the background (async), allowing the porgram to continue lines of codes (sync).</dd>
+                <dt><b>4. Completion</b></dt>
+                <dd>Once the task is completed, the API returns a "notification" into a queue.</dd>
+                <dt><b>5. Verification</b></dt>
+                <dd>As the program finished with tasks (sync), the queue transfers the result back to it, replacing the placeholder</dd>
             </dl>
         </p>
       </div>
