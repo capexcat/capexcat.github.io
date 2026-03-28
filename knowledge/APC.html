@@ -120,7 +120,7 @@
           
     <div class="accordion-item">
       <div class="accordion-header">
-        <b>I. Definition</b> <span>+</span>
+        <b>I. Definition of an APC</b> <span>+</span>
       </div>
       <div class="accordion-content">
         <p>An <b>Asynchronous Procedure Call</b> <i>(APC)</i> is a function that executes asynchronously in the context of a particular thread.<br>
@@ -132,7 +132,7 @@
 
     <div class="accordion-item">
       <div class="accordion-header">
-        <b>II. Flow</b> <span>+</span>
+        <b>II. Lifecycle of an APC</b> <span>+</span>
       </div>
       <div class="accordion-content">
         <p>
@@ -143,12 +143,24 @@
                 <dt><b>2. Exchange</b></dt>
                 <dd>The API captures the parameters and returns control to the program which received a placeholder.</dd>
                 <dt><b>3. Background Execution</b></dt>
-                <dd>The API takes care of the task in the background (async), allowing the porgram to continue lines of codes (sync).</dd>
+                <dd>The API takes care of the task in the background (async), allowing the program to continue executing lines of codes (sync).</dd>
                 <dt><b>4. Completion</b></dt>
                 <dd>Once the task is completed, the API returns a "notification" into a queue.</dd>
                 <dt><b>5. Verification</b></dt>
                 <dd>As the program finished with tasks (sync), the queue transfers the result back to it, replacing the placeholder</dd>
             </dl>
+        </p>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <div class="accordion-header">
+        <b>III. What is an APC Injection?</b> <span>+</span>
+      </div>
+      <div class="accordion-content">
+        <p>An <b>Asynchronous Procedure Call</b> <i>(APC)</i> is a function that executes asynchronously in the context of a particular thread.<br>
+            On simpler terms, it's a queued code stored within a specific part of a process that runs when such part is free of any work.<br>
+            On even simpler terms, it's a method used by computers that allows execution without having to wait for a task to finish.<br>
         </p>
       </div>
     </div>
