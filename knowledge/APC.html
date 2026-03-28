@@ -113,18 +113,32 @@
     <h1>Asynchronous Process Call Injection</h1>
     <p class="subtitle">Executing shellcode within a process.</p>
       <p>
-          This entry aims to explain <b>what is an Asynchronous Process Call, how does it work and how it can be exploited </b> to execute shellcode.
+          This entry aims to explain <b>what is an Asynchronous Process Call, how does it work and how it can be exploited </b> to execute shellcode.<br>
       </p>
+          
     <div class="accordion-item">
       <div class="accordion-header">
-        <b>What is an APC?</b> <span>+</span>
+        <b>I. Definition</b> <span>+</span>
       </div>
       <div class="accordion-content">
-        <p>An <b>Asynchronous Procedure Call</b> (APC) is a function that executes asynchronously in the context of a particular thread.
-            On simpler terms, it's a queued code stored within a specific part of a process that runs when such part is free of any task.
+        <p>An <b>Asynchronous Procedure Call</b> <i>(APC)</i> is a function that executes asynchronously in the context of a <in>particular thread.</in>
+            On simpler terms, it's a queued code stored within a specific part of a process that runs when such part is free of any work.
+            On even simpler terms, it's a method used by computers that allows execution without having to wait for a task to finish.
         </p>
       </div>
     </div>
+
+    <div class="accordion-item">
+      <div class="accordion-header">
+        <b>II. Flow</b> <span>+</span>
+      </div>
+      <div class="accordion-content">
+        <p>
+            To fully grasp the inner workings of APC, it's key to understand it's flow, which can be divided in the following steps:
+        </p>
+      </div>
+    </div>
+          
 
     <footer>
         © 2026 CapeXCat — Hosted on GitHub Pages
