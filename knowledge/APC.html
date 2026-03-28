@@ -115,7 +115,7 @@
     <p class="subtitle">Executing shellcode within a process.</p>
       <p style="text-align: justify; margin-bottom: 20px;">
           This entry aims to explain <b>what is an Asynchronous Process Call, how does it work and how it can be exploited </b> to execute shellcode.
-          <i>Please note that this dwells deep on the inner workings of a computer so if you aren't familiar with processes, assembly and OS structuring, it's going to be quite hard to understand.</i><br>
+          <i>Please note that this dwells deep on the inner workings of a computer so if you aren't familiar with processes, assembly and OS structuring, it's going to be quite hard to understand.</i><br><br>
           First and foremost, some basic definitions have been included before the actual construction of the payload. If you are already experienced and want to skip to
           the construction of the payload, please skip to IV.
       </p>
@@ -174,12 +174,14 @@
       <div class="accordion-content">
         <p style="text-align: justify; margin-bottom: 20px;">
             Now that the basics have been covered, it's time to lay out the environment where weapons are going to be developed.
-            <i>Since the code involved operates in <b>very delicate aspects of Windows</b>, it's really recommended to set up a Virtual Machine</i>.<br><br><br><br><br>
+            <i>Since the code involved operates in <b>very delicate aspects of Windows</b>, it's really recommended to set up a Virtual Machine</i>.<br><br>
             For these kinds of experiments I recommend <a href="https://archive.org/details/tiny-10-NTDEV" target="_blank">Tiny10</a>, an ISO based on Win10 LTSC to make the OS
             as lightweight as possible. As for the hypervisor, <a href="https://www.vmware.com/products/desktop-hypervisor/workstation-and-fusion" target="_blank">VMWare Workstation</a> or <a href="https://www.virtualbox.org/" target="_blank">Oracle Virtualbox</a> are great choices to locally set up a working space.<br><br>
 
             The project involves <a href="https://en.wikipedia.org/wiki/C%2B%2B" target="_blank">C++</a> and <a href="https://en.wikipedia.org/wiki/Assembly_language" target="_blank">ASM</a>,
             for that matter a good IDE will make thing easier. My personal choice for this is <a href="https://visualstudio.microsoft.com/es/vs/older-downloads/" target="_blank">Visual Studio 2022</a> which offers <a href="https://en.wikipedia.org/wiki/Microsoft_Macro_Assembler" target="_blank">MASM</a>.
+
+            A
         </p>
       </div>
     </div>
