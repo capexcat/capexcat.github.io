@@ -115,5 +115,30 @@
       <p>
           This entry aims to explain <b>what is an Asynchronous Process Call, how does it work and how it can be exploited </b> to execute shellcode.
       </p>
+    <div class="accordion-item">
+      <div class="accordion-header">
+        <b>What is an APC?</b> <span>+</span>
+      </div>
+      <div class="accordion-content">
+        <p>An <b>Asynchronous Procedure Call</b> (APC) is a function that executes asynchronously in the context of a particular thread.<br>
+            On simpler terms, it's a queued code stored within a specific part of a process that runs when such part is free of any task.
+        </p>
+      </div>
     </div>
-  </body>
+    </div>
+
+    <footer>
+        © 2026 CapeXCat — Hosted on GitHub Pages
+    </footer>
+</div>
+
+    <script>
+    const items = document.querySelectorAll(".accordion-item");
+
+    items.forEach(item => {
+        item.querySelector(".accordion-header").addEventListener("click", () => {
+            item.classList.toggle("active");
+        });
+    });
+    </script>
+ </body>
