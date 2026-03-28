@@ -111,11 +111,11 @@
 
   <body>
       <div class="container">
-    <h1>Asynchronous Process Call Injection</h1>
+    <h1>Asynchronous Process Call Injection (Windows)</h1>
     <p class="subtitle">Executing shellcode within a process.</p>
       <p style="text-align: justify;">
           This entry aims to explain <b>what is an Asynchronous Process Call, how does it work and how it can be exploited </b> to execute shellcode.
-          <i>Please note that this dwells deep on the inner workings of a computer so if you aren't familiar with processes, assembly and OS structuring, it's going to be quite hard to understand.</i>
+          <i>Please note that this dwells deep on the inner workings of a computer so if you aren't familiar with processes, assembly and OS structuring, it's going to be quite hard to understand.</i><br>
           First and foremost, some basic definitions have been included before the actual construction of the payload. If you are already experienced and want to skip to
           the construction of the payload, please skip to IV.
       </p>
@@ -173,8 +173,10 @@
       </div>
       <div class="accordion-content">
         <p style="text-align: justify;">
-            Now that the basics have been covered, it's time to lay out the environment where we are going to develop our weapons.
-            
+            Now that the basics have been covered, it's time to lay out the environment where weapons are going to be developed.
+            <i>Since the code involved operates in <b>very delicate aspects of Windows</b>, it's really recommended to set up a Virtual Machine</i>.
+            For these kinds of experiments I recommend <a href="https://archive.org/details/tiny-10-NTDEV" target="_blank">Tiny10</a>, an ISO based on Win10 LTSC to make the OS
+            as lightweight as possible. As for the hypervisor, VMWare or Oracle Virtualbox are great choices to locally set up a working space.
         </p>
       </div>
     </div>
