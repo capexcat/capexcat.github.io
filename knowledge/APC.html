@@ -114,7 +114,7 @@
     <h1>Asynchronous Process Call Injection (Windows)</h1>
     <p class="subtitle">Executing shellcode within a process.</p>
       <p style="text-align: justify; margin-bottom: 20px;">
-          This entry aims to explain <b>what is an Asynchronous Process Call, how does it work and how it can be exploited </b> to execute shellcode.
+          This entry aims to explain <b>what is an Asynchronous Process Call, how does it work and how it can be exploited </b> to execute shellcode in a Windows environment.
           <i>Please note that this dwells deep on the inner workings of a computer so if you aren't familiar with processes, assembly and OS structuring, it's going to be quite hard to understand.</i><br><br>
           First and foremost, some basic definitions have been included before the actual construction of the payload. If you are already experienced and want to skip to
           the development of the project, please skip to IV.
@@ -255,7 +255,7 @@
           <br><br>
 
           From this position it is a matter of understanding the syntax and correctly applying it to the desired case: <code style="color: #343a40; background-color: #e1e3e6;">winmugen.exe -p1 DM -p2 kfm -rounds 2</code>. Random fact: This
-          simple event is known as a <b>postman character</b>, which rely on simple automation using .bat or .vbs files. This is the most basic form of an external character:<br><br>
+          simple event is known as a <b>postman character</b>, which relies on simple automation using .bat or .vbs files. This is the most basic form of an external character:<br><br>
           <img src="https://raw.githubusercontent.com/capexcat/capexcat.github.io/refs/heads/main/pictures/MUGENcmdexec.png" style="display: block; margin: 0 auto; max-width: 100%; height: auto;">
           <br><br>
 
@@ -273,6 +273,13 @@
       </div>
       <div class="accordion-content">
         <p style="text-align: justify;">
+          This following section can be quite dense, so I'll unpack everything carefully, <i>please note that everything is treated with educational purposes</i>. The idea is clear now, <b>start a matchup in MUGEN within a thread of a process</b>. 
+          The goal of a <b>shellcode</b> is the execution of arbitrary code in a system. Scoping it to the idea, successful execution is the highest priority and for that <a href="https://en.wikipedia.org/wiki/Position-independent_code">Position Independent Code</a> (PIC)
+          is the best suit, since the only knowledgable aspect of the selected environment is the Operative System: Windows.<br><br>
+
+          The first step is <b>finding kernel32.dll <i>manually</i></b>. In order to find it, the code (when running) automatically creates a <a href="https://www.geoffchappell.com/studies/windows/km/ntoskrnl/inc/api/pebteb/teb/index.htm">Thread Environment Block</a> (TEB),
+          not to be confused with <a href="https://en.wikipedia.org/wiki/Win32_Thread_Information_Block">Thread Information Block</a> (TIB), TEB is x64 and TIB is x32.
+          
         </p>
       </div>
     </div>
