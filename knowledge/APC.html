@@ -300,15 +300,15 @@
 
           <code style="color: #343a40; background-color: #e1e3e6;">Thread Environment Block -> Offset 0x60 -> Process Environment Block -> Offset 0x18 -> PEB_LDR_DATA -> Offset 0x20 -> InMemoryOrderModuleList -> Kernel32.dll -> Offset 0x20 -> DllBase</code><br><br>
           
-          Using MASM, the pseudocode looks like this (Note: Won't add malicious code snippets since GitHub nukes it):
+          Using MASM, the pseudocode looks like this:<br>
            <code class="code-block">
             ;Consider x a register and yh an hexadecimal value.
             mov x, gs:[yh] ;Using gs register to access memory
-            mov x, [x+yh]  ;Adding offsets
-            mov x, x          ;Dereference MODULE_ENTRY
+            mov x, [x+yh]  ;Adding offsets ("walking into components")
+            mov x, x       ;Dereference MODULE_ENTRY ("walk a component")
             ...
           </code>
-          <br><br>
+          <br>
 
           Second step, <b>finding WinExec within kernel32.dll <i>manually</i></b>. <a href="https://learn.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-winexec" target="_blank">WinExec</a> is a deprecated function which allows for command execution, <a href="https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-createprocessa" target="_blank">CreateProcess</a> 
           is a much better alternative but requires more parameters, that is why I stick to <i>WinExec</i>. Some DLLs contain what is known as an <b>export table</b> that can be inspected with tools like <a href="https://github.com/jNizM/DllExport" target="_blank">DllExport</a> or <a href="https://learn.microsoft.com/en-us/cpp/build/reference/dumpbin-command-line?view=msvc-170" target="_blank">Dumpbin</a>.
@@ -317,10 +317,42 @@
           <br><br>
 
           These export tables are given by DLLs to allow other modules and programs to use them. While this feature makes modulation easier, it creates <i>external library dependency</i> due to the address pointing made by the <a href="https://en.wikipedia.org/wiki/Portable_Executable#Import_table">Import Address Table</a> (IAT) towards the export table at runtime. There are many ways to bypass the IAT, to make
-          it a little more interesting I have settled for manually resolving <i>WinExec</i>'s address via <b>GetProcAddressByHash</b>, an alternative method of the function <a href="https://learn.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-getprocaddress" target="_blank">GetProcAddress</a>. In essence: 
+          it a little more interesting I have settled for manually resolving <i>WinExec</i>'s address via <b>GetProcAddressByHash</b>, an alternative method of the function <a href="https://learn.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-getprocaddress" target="_blank">GetProcAddress</a>. In essence:<br><br>
           
           <code style="color: #343a40; background-color: #e1e3e6;">Hash WinExec -> Load DllBase and PE Header data -> Extract information from the export table (kernel32.dll) -> Search function name by hash -> Hash function name -> Compare hashes -> Retrieve function address</code><br><br>
 
+          Pseucode of the custom function (This one is a big nono so I have to write it like this so GitHub does not nuke me):<br>
+
+          <code class="code bloack">
+            FUNCTION FindFunctionByHash(ModuleBaseAddress, TargetHash):
+                // 1. Navigate the PE (Portable Executable) Structure
+                HeaderOffset = Read32BitValue(ModuleBaseAddress + 0x3C)
+                ExportTableRVA = Read32BitValue(ModuleBaseAddress + HeaderOffset + 0x88)
+                ExportTableVA = ModuleBaseAddress + ExportTableRVA
+
+                // 2. Access Metadata Tables
+                NameArrayVA = ModuleBaseAddress + Read32BitValue(ExportTableVA + 0x20)
+                TotalFunctions = Read32BitValue(ExportTableVA + 0x18)
+
+                // 3. Search Loop
+                FOR i FROM TotalFunctions - 1 DOWN TO 0:
+                    CurrentNameVA = ModuleBaseAddress + Read32BitValue(NameArrayVA + (i * 4))
+        
+                    // Calculate the hash of the current function name string
+                    CurrentHash = CalculateRotateHash(CurrentNameVA)
+
+                    IF CurrentHash EQUALS TargetHash:
+                        // 4. Resolve the Address
+                        OrdinalTableVA = ModuleBaseAddress + Read32BitValue(ExportTableVA + 0x24)
+                        FunctionIndex = Read16BitValue(OrdinalTableVA + (i * 2))
+
+                        AddressTableVA = ModuleBaseAddress + Read32BitValue(ExportTableVA + 0x1C)
+                        FinalRVA = Read32BitValue(AddressTableVA + (FunctionIndex * 4))
+
+                        RETURN (ModuleBaseAddress + FinalRVA)
+
+                RETURN NULL // Function not found
+          </code>
         </p>
       </div>
     </div>
