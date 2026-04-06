@@ -272,7 +272,7 @@
         <b>VIII. External P2 - Shellcode</b> <span>+</span>
       </div>
       <div class="accordion-content">
-        <p style="text-align: justify;">
+        <p style="text-align: justify; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;>
           This following section can be quite dense, so I'll unpack everything carefully, <i>please note that everything is treated with educational purposes</i>. The idea is clear now, <b>start a matchup in MUGEN within a thread of a process</b>.<br><br>
 
           The goal of a <b>shellcode</b> is the execution of arbitrary code in a system. Scoping it to the idea, successful execution is the highest priority and for that <a href="https://en.wikipedia.org/wiki/Position-independent_code" target="_blank">Position Independent Code</a> (PIC)
@@ -292,7 +292,7 @@
             ;Consider x a register and yh an hexadecimal value.
             mov x, gs:[yh] ;Using gs register to access memory
             mov x, [x+yh]  ;Adding offsets
-            mov x, x       ;Dereference MODULE_ENTRY
+            mov x, x        ;Dereference MODULE_ENTRY
             ...
           </code></pre>
           <br><br>
