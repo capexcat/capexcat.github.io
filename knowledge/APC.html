@@ -372,14 +372,7 @@
           Since this project is being handled in x64, <b>it is obligatory to align the program to 16 bits</b> due to a variety of factors such as <a href="https://en.wikipedia.org/wiki/Streaming_SIMD_Extensions" target="_blank">Streaming SIMD Extensions</a> (128-bit instructions) and  
           <a href="https://learn.microsoft.com/en-us/cpp/build/x64-software-conventions">8-byte offset & shadow space</a>. Fail to comply those requirements and the program crashes by access violation.
           Furthermore, the shellcode has to be <i>extracted</i> cleanly and prevented from compiling modifications. In Visual Studio 2022 the following flags have to be modified:
-              <dl>
-                <dt><b>Incremental linking /INCREMENTAL: NO</b></dt>
-                <dd>Upon changing a function, the linker merely updates that specific part and jumps to a new location.</dd>
-                <dt><b>Ignore all default libraries /NODEFAULTLIB</b></dt>
-                <dd>Default libraries add an IAT, which essentially undoes all the prior work.</dd>
-                <dt><b>Disable large addresses /LARGEADDRESSAWARE:NO</b></dt>
-                <dd>The linker may assume specific relocations that assume a wider memory space.</dd>
-            </dl>
+          <b>Incremental linking /INCREMENTAL: NO</b> - Upon changing a function, the linker merely updates that specific part and jumps to a new location. <b>Ignore all default libraries /NODEFAULTLIB</b> - Default libraries add an IAT, which essentially undoes all the prior work. <b>Disable large addresses /LARGEADDRESSAWARE:NO</b> - The linker may assume specific relocations that assume a wider memory space.
           <br>
           To fully confirm that the code is truly independent, no matter the system, a tool named <a href="https://pestudio.org/" target="_blank">PEStudio</a> can analyze the binary to see dependencies. 
           As seen on the illustration below, <b>it not relies on anything</b>.<br><br>
