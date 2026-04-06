@@ -192,7 +192,9 @@
       <div class="accordion-content">
         <p style="text-align: justify;">
             An <b>APC Injection</b> is a type of code injection which involves running a payload within the address space of a legitimate process, a thread to be exact.
-            There are many variants of this type of injection: AtomBombing, Early Bird, NtQueueApcThread...
+            There are many variants of this type of injection: AtomBombing, Early Bird, NtQueueApcThread...While ones target suspended states, others target <a href="https://learn.microsoft.com/en-us/windows/win32/dataxchg/about-atom-tables">Global Atom Tables</a> or native APIs.<br><br>
+
+            It is particularly stealthy because it doesn't create a new thread but instead <i>hijacks</i> the execution flow of a legitimate one, thus bypassing minor security checks.
         </p>
       </div>
     </div>
@@ -453,6 +455,11 @@
       </div>
       <div class="accordion-content">
         <p style="text-align: justify;">
+          The result of this project is <b>an Asynchronous Process Call Injection that targets <i>notepad.exe</i> and is able to run without dependencies in several versions of Windows.</b>
+          I want to give another thank you to <a href="https://www.youtube.com/@MegaStick">MegaStick</a> for testing it out on his machine, visually it's nothing major but it has some
+          interesting technological aspects.<br><br>
+
+          <img src="https://raw.githubusercontent.com/capexcat/capexcat.github.io/refs/heads/main/pictures/showcasegif.gif" style="display: block; margin: 0 auto; max-width: 100%; height: auto;">
         </p>
       </div>
     </div>
