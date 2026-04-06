@@ -273,12 +273,16 @@
       </div>
       <div class="accordion-content">
         <p style="text-align: justify;">
-          This following section can be quite dense, so I'll unpack everything carefully, <i>please note that everything is treated with educational purposes</i>. The idea is clear now, <b>start a matchup in MUGEN within a thread of a process</b>. 
-          The goal of a <b>shellcode</b> is the execution of arbitrary code in a system. Scoping it to the idea, successful execution is the highest priority and for that <a href="https://en.wikipedia.org/wiki/Position-independent_code">Position Independent Code</a> (PIC)
-          is the best suit, since the only knowledgable aspect of the selected environment is the Operative System: Windows.<br><br>
+          This following section can be quite dense, so I'll unpack everything carefully, <i>please note that everything is treated with educational purposes</i>. The idea is clear now, <b>start a matchup in MUGEN within a thread of a process</b>.<br><br>
 
-          The first step is <b>finding kernel32.dll <i>manually</i></b>. In order to find it, the code (when running) automatically creates a <a href="https://www.geoffchappell.com/studies/windows/km/ntoskrnl/inc/api/pebteb/teb/index.htm">Thread Environment Block</a> (TEB),
-          not to be confused with <a href="https://en.wikipedia.org/wiki/Win32_Thread_Information_Block">Thread Information Block</a> (TIB), TEB is x64 and TIB is x32.
+          The goal of a <b>shellcode</b> is the execution of arbitrary code in a system. Scoping it to the idea, successful execution is the highest priority and for that <a href="https://en.wikipedia.org/wiki/Position-independent_code">Position Independent Code</a> (PIC)
+          is the best suit, since the only knowledgable aspect of the selected environment is the Operative System: Windows. <i>PIC CAN be written without ASM, but you give up low-level control which in undocumented features is recommended</i>.<br><br>
+
+          The first step is <b>finding kernel32.dll <i>manually</i></b>. In order to locate it, the code (when executed) automatically creates a <a href="https://www.geoffchappell.com/studies/windows/km/ntoskrnl/inc/api/pebteb/teb/index.htm">Thread Environment Block</a> (TEB),
+          not to be confused with <a href="https://en.wikipedia.org/wiki/Win32_Thread_Information_Block">Thread Information Block</a> (TIB). <i>TEB is x64 bit and TIB is x32 bit</i>. These blocks hold information of the currently running thread and
+          inside them, specifically at offset 0x60, there's a pointer to the <a href="https://www.geoffchappell.com/studies/windows/km/ntoskrnl/inc/api/pebteb/peb/index.htm">Process Environment Block</a> which contains data about the current process.
+          From here, there's another pointer at offset 0x18 (Ldr) which leads to the <a href="https://www.geoffchappell.com/studies/windows/km/ntoskrnl/inc/api/ntpsapi_x/peb_ldr_data.htm?tx=131,185">PEB_LDR_DATA</a> structure. This structure is a record of all DLLs loaded
+          into memory. 
           
         </p>
       </div>
