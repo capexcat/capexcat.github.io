@@ -238,7 +238,7 @@
           <img src="https://raw.githubusercontent.com/capexcat/capexcat.github.io/refs/heads/main/pictures/emptywin.png" style="display: block; margin: 0 auto; max-width: 100%; height: auto;">
           <br><br>
 
-          If everything has been done accordingly, <b>we now have a runnable, standalone, isolated copy of the engine:</b><br><br>
+          Everything has been done accordingly, <b>we now have a runnable, standalone, isolated copy of the engine:</b><br><br>
           <img src="https://raw.githubusercontent.com/capexcat/capexcat.github.io/refs/heads/main/pictures/result.png" style="display: block; margin: 0 auto; max-width: 100%; height: auto;">
     </div>
     </div>
@@ -249,6 +249,20 @@
       </div>
       <div class="accordion-content">
         <p style="text-align: justify;">
+          The next objective is to reach execution within the game. How is it possible to start a matchup without having indexed characters? Fortunately, there are several command options
+          which can be easily accessed via <code>winmugen.exe -h</code> as represented in the following image:<br><br>
+          <img src="https://raw.githubusercontent.com/capexcat/capexcat.github.io/refs/heads/main/pictures/MUGENcmd.png" style="display: block; margin: 0 auto; max-width: 100%; height: auto;">
+          <br><br>
+
+          From this position it is a matter of understanding the syntax and correctly applying it to the desired case: <code>winmugen.exe -p1 DM -p2 kfm -rounds 2</code>. Random fact: This
+          simple event is known as a <b>postman character</b>, which rely on simple automation using .bat or .vbs files. This is the most basic form of an external character:<br><br>
+          <img src="https://raw.githubusercontent.com/capexcat/capexcat.github.io/refs/heads/main/pictures/MUGENcmdexec.png" style="display: block; margin: 0 auto; max-width: 100%; height: auto;">
+          <br><br>
+
+          Such simplicity comes in the cost of an expection. If the repacked copy is executed through it's absolute path, we get an error related to <i>mugen.cfg</i>. I do not know why this
+          happens, even if you include the "data" folder with all of the contents it still crashes. Either way, this exception only occurs with absolute paths so <b>execution must share
+          directory with MUGEN</b>.<br><br>
+          <img src="https://raw.githubusercontent.com/capexcat/capexcat.github.io/refs/heads/main/pictures/MUGENcfgerr.png" style="display: block; margin: 0 auto; max-width: 100%; height: auto;">
         </p>
       </div>
     </div>
