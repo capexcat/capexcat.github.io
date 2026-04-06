@@ -106,7 +106,6 @@
       background-color: #e1e3e6;
       padding: 10px;
       border-radius: 5px;
-      font-family: 'Courier New', monospace;
       white-space: pre;
       word-break: break-word;
     }
@@ -315,55 +314,7 @@
 
           These export tables are given by DLLs to allow other modules and programs to use them. While this feature makes modulation easier, it creates <i>external library dependency</i> due to the address pointing made by the <a href="https://en.wikipedia.org/wiki/Portable_Executable#Import_table">Import Address Table</a> towards the export table at runtime. There are many ways to bypass the IAT, to make
           it a little more interesting I have settled for manually resolving <i>WinExec</i>'s address via <b>GetProcAddressByHash</b>, an alternative method of the function <a href="https://learn.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-getprocaddress" target="_blank">GetProcAddress</a>. In essence, hash <i>WinExec</i>, load DllBase and PE Header data, extract information from the export
-          table created by kernel32.dll, search the function name by hash, hash the function name, compare the hash and retrieve the function address. Down below several snippets of pseudocode are attached:<br><br>
-
-            <pre><code>
-              Function GetProcAddressByHash(DLLBase, FunctionHash)
-    // Initialize
-    Push registers (RBP, RSI, RDI, RBX)
-    
-    Set DLLBase = DLLBase
-    PEHeaderOffset = Read 4 bytes from [DLLBase + 0x3C]    // PE Header offset
-    ExportDirectoryRVA = Read 4 bytes from [DLLBase + PEHeaderOffset + 0x88]   // Export Directory RVA
-    ExportDirectoryAddress = DLLBase + ExportDirectoryRVA  // Final address of Export Directory
-    
-    AddressOfNamesRVA = Read 4 bytes from [ExportDirectoryAddress + 0x20]  // RVA of AddressOfNames
-    AddressOfNamesVA = DLLBase + AddressOfNamesRVA  // Final address of AddressOfNames array
-    NumberOfNames = Read 4 bytes from [ExportDirectoryAddress + 0x18]  // Number of function names
-
-    // Search for function by its hash
-    For index = 0 to NumberOfNames - 1
-        FunctionNameRVA = Read 4 bytes from [AddressOfNamesVA + (index * 4)]  // RVA of the function name
-        FunctionNameVA = DLLBase + FunctionNameRVA  // Address of the function name string
-        
-        // Calculate hash of the function name
-        ComputedHash = 0
-        For each character in FunctionName string
-            Update ComputedHash by rotating and adding current byte
-        
-        If ComputedHash == FunctionHash
-            // Function found, get its address
-            OrdinalTableRVA = Read 4 bytes from [ExportDirectoryAddress + 0x24]  // Ordinal Table RVA
-            OrdinalTableVA = DLLBase + OrdinalTableRVA  // Final address of Ordinal Table
-            
-            Ordinal = Read 2 bytes from [OrdinalTableVA + (index * 2)]  // Get function ordinal
-            
-            AddressTableRVA = Read 4 bytes from [ExportDirectoryAddress + 0x1C]  // Address Table RVA
-            AddressTableVA = DLLBase + AddressTableRVA  // Final address of Address Table
-            
-            FunctionRVA = Read 4 bytes from [AddressTableVA + (Ordinal * 4)]  // Get function RVA
-            FunctionAddress = DLLBase + FunctionRVA  // Final address of the function
-            
-            // Restore stack and registers, return function address
-            Pop registers (RBX, RDI, RSI, RBP)
-            Return FunctionAddress
-            
-    End For
-    
-    // If not found, return NULL
-    Return NULL
-End Function
-          </code></pre><br><br>
+          table created by kernel32.dll, search the function name by hash, hash the function name, compare the hash and retrieve the function address. Down below I have attached a comprehensive pseudocode:<br><br>
         </p>
       </div>
     </div>
