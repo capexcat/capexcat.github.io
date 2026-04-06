@@ -288,7 +288,7 @@
           <code style="color: #343a40; background-color: #e1e3e6;">Thread Environment Block -> Offset 0x60 -> Process Environment Block -> Offset 0x18 -> PEB_LDR_DATA -> Offset 0x20 -> InMemoryOrderModuleList -> Kernel32.dll -> Offset 0x20 -> DllBase</code><br><br>
           
           Using MASM, the pseudocode looks like this:
-          <pre><code style="color: #343a40; background-color: #e1e3e6;">
+          <pre style="color: #343a40; background-color: #e1e3e6; padding: 10px; border-radius: 5px; font-family: 'Courier New', monospace;"><code>
             ;Consider x a register and yh an hexadecimal value.
             mov x, gs:[yh] ;Using gs register to access memory
             mov x, [x+yh]  ;Adding offsets
