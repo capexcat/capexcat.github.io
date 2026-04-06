@@ -401,11 +401,11 @@
           declared to segment the execution properly.<br><br>
           
           The first one of them is named <b>CreateDebugProcess</b> which uses <i>CreateProcessA</i> to create a suspended process while targetting a legitimate 
-          process, in this case <i>notepad.exe</i>. The variant of this project is a classic one, <i>Early bird</i>, as the process is awaiting for instructions. The second function is <b>InjectShellCode</b>, 
+          process, in this case <i>notepad.exe</i>. The variant of this project is a classic one, <b><i>Early bird</i></b>, as the process is awaiting for instructions. The second function is <b>InjectShellCode</b>, 
           as the name suggests, it prepares the target for the payload using <a href="https://learn.microsoft.com/en-us/windows/win32/api/memoryapi/nf-memoryapi-virtualallocex" target="_blank">VirtualAllocEx</a> and
           <a href="https://learn.microsoft.com/es-es/windows/win32/api/memoryapi/nf-memoryapi-writeprocessmemory" target="_blank">WriteProcessMemory</a> to copy it into that allocated space. Lastly, the function
-          <b>APCInjection</b> adds a task to the thread's APC queue through <a href="https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-queueuserapc" target="_blank">QueueUserAPC</a>, when alerted, 
-          since it has been created in a suspended state it is "conditined" to execute the APC when resumed, thus executing the payload.<br><br>
+          <b>APCInjection</b> adds a task to the thread's APC queue through <a href="https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-queueuserapc" target="_blank">QueueUserAPC</a>. When alerted, 
+          since it has been created in a suspended state it is "conditioned" to execute the APC when resumed, thus executing the payload.<br><br>
 
           The flow of the program follows the given pseudocode:<br>
           <code class="code-block">
@@ -440,7 +440,9 @@
             ExecuteViaAPC(thread, payload_addr)
           </code>
           <br>
-
+          Naturally, the injector <b>must be independent as well</b>, which is easier than ASM. The build has to be set as <i>Release x64</i>, disable debug libraries and establish Runtime Library 
+          as <b>Multi-threaded (/MT)</b>. Again, to thoroughly check the changes, verify it with PEStudio:<br><br>
+          <img src="https://raw.githubusercontent.com/capexcat/capexcat.github.io/refs/heads/main/pictures/pestudio2.png" style="display: block; margin: 0 auto; max-width: 100%; height: auto;">
         </p>
       </div>
     </div>
