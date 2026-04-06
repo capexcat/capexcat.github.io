@@ -220,8 +220,26 @@
       </div>
       <div class="accordion-content">
         <p style="text-align: justify;">
-        </p>
-      </div>
+          Before proceeding with external technology, there's one last aspect to be accountable of, <b>MUGEN's structure</b>. When downloading it, it contains several files distributed in specific
+          folders to run the engine correctly. This by no means is wrong, however, it is seen as rough when proving concepts such as this one. To start "cleaning" it, optional files are removed, which
+          leaves the engine like this:<br><br>
+          <img src="https://raw.githubusercontent.com/capexcat/capexcat.github.io/refs/heads/main/pictures/wmstruct.png" style="display: block; margin: 0 auto; max-width: 100%; height: auto;">
+          <br><br>
+
+          At this point another tool is necessary to fully polish the game, introducing <a href="https://github.com/sudachen/Molebox" target="_blank">Molebox</a>, a software that converts applications into standalone
+          executables by packaging those files needed. It offers a lot of options, however, I'll keep things simple. What you need to know about the screenshot provided below this text is the following:
+          Firstly, a source .exe file is chosen to be relinked, secondly, a target .exe file is selected (this is the final repacked executable) and last but not least add all of the mandatory files (characters, configurations,
+          fonts...)<br><br>
+          <img src="https://raw.githubusercontent.com/capexcat/capexcat.github.io/refs/heads/main/pictures/Molebox.png" style="display: block; margin: 0 auto; max-width: 100%; height: auto;">
+          <br><br>
+
+          A minor detail to note is the file <i>select.def</i> which indexes all of the characters and stages into the game. Since it's not intended for the user to access <i>Damnation Mizuchi Clone</i> within the engine, it is 
+          key to remove all characters from the list to leave the engine hollow internally:<br><br>
+          <img src="https://raw.githubusercontent.com/capexcat/capexcat.github.io/refs/heads/main/pictures/emptywin.png" style="display: block; margin: 0 auto; max-width: 100%; height: auto;">
+          <br><br>
+
+          If everything has been done accordingly, <b>we now have a runnable, standalone, isolated copy of the engine:</b><br><br>
+          <img src="https://raw.githubusercontent.com/capexcat/capexcat.github.io/refs/heads/main/pictures/result.png" style="display: block; margin: 0 auto; max-width: 100%; height: auto;">
     </div>
 
     <div class="accordion-item">
