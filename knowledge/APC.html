@@ -101,14 +101,15 @@
         text-align: center;
     }
 
-    pre {
-      color: #343a40;
-      background-color: #e1e3e6;
-      padding: 10px;
-      border-radius: 5px;
-      white-space: pre-wrap;       /* Preserves spaces but wraps text to fit the container */
-      word-wrap: break-word;        /* Older browser support */
-      overflow-x: auto;            /* Adds a scrollbar ONLY to the code block if a line is too long */
+    .code-block {
+        display: block;          
+        font-family: monospace;
+        background: #e1e3e6;
+        padding: 15px;
+        border-radius: 5px;
+        line-height: 1.5;
+        overflow-x: auto;       
+        white-space: nowrap;
     }
 
     @media (max-width: 500px) {
@@ -298,9 +299,16 @@
           <code style="color: #343a40; background-color: #e1e3e6;">Thread Environment Block -> Offset 0x60 -> Process Environment Block -> Offset 0x18 -> PEB_LDR_DATA -> Offset 0x20 -> InMemoryOrderModuleList -> Kernel32.dll -> Offset 0x20 -> DllBase</code><br><br>
           
           Using MASM, the pseudocode looks like this (Note: Won't add malicious code snippets since GitHub nukes it):
+           <code class="code-block">
+            ;Consider x a register and yh an hexadecimal value.
+            mov x, gs:[yh] ;Using gs register to access memory
+            mov x, [x+yh]  ;Adding offsets
+            mov x, x          ;Dereference MODULE_ENTRY
+            ...
+          </code>
+          <br><br>
 
-
-          Second step, <b>finding WinExec <i>manually</i></b>. <a href="https://learn.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-winexec" target="_blank">WinExec</a> is a deprecated function which allows for command execution, <a href="https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-createprocessa" target="_blank">CreateProcess</a> 
+          Second step, <b>finding WinExec within kernel32.dll <i>manually</i></b>. <a href="https://learn.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-winexec" target="_blank">WinExec</a> is a deprecated function which allows for command execution, <a href="https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-createprocessa" target="_blank">CreateProcess</a> 
           is a much better alternative but requires more parameters, that is why I stick to <i>WinExec</i>. Some DLLs contain what is known as an <b>export table</b> that can be inspected with tools like <a href="https://github.com/jNizM/DllExport" target="_blank">DllExport</a> or <a href="https://learn.microsoft.com/en-us/cpp/build/reference/dumpbin-command-line?view=msvc-170" target="_blank">Dumpbin</a>.
           In such export tables we can find data such as the <b>ordinal</b> number (unique ID), the <b>hint</b> (shortened ID for backward compatibility), the <a href="https://en.wikipedia.org/wiki/Virtual_address_space" target="_blank">Relative Virtual Address</a> (pointer relative to the start of the loaded module) and the <b>Name</b> (duh):<br><br>
 
