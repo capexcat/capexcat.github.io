@@ -298,14 +298,7 @@
           <code style="color: #343a40; background-color: #e1e3e6;">Thread Environment Block -> Offset 0x60 -> Process Environment Block -> Offset 0x18 -> PEB_LDR_DATA -> Offset 0x20 -> InMemoryOrderModuleList -> Kernel32.dll -> Offset 0x20 -> DllBase</code><br><br>
           
           Using MASM, the pseudocode looks like this (Note: Won't add malicious code snippets since GitHub nukes it):
-          <pre><code>
-            ;Consider x a register and yh an hexadecimal value.
-            mov x, gs:[yh] ;Using gs register to access memory
-            mov x, [x+yh]  ;Adding offsets
-            mov x, x          ;Dereference MODULE_ENTRY
-            ...
-          </code></pre>
-          <br><br>
+
 
           Second step, <b>finding WinExec <i>manually</i></b>. <a href="https://learn.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-winexec" target="_blank">WinExec</a> is a deprecated function which allows for command execution, <a href="https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-createprocessa" target="_blank">CreateProcess</a> 
           is a much better alternative but requires more parameters, that is why I stick to <i>WinExec</i>. Some DLLs contain what is known as an <b>export table</b> that can be inspected with tools like <a href="https://github.com/jNizM/DllExport" target="_blank">DllExport</a> or <a href="https://learn.microsoft.com/en-us/cpp/build/reference/dumpbin-command-line?view=msvc-170" target="_blank">Dumpbin</a>.
