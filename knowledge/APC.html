@@ -180,7 +180,7 @@
             </dl>
             <br>
             <br>
-            <img src="https://raw.githubusercontent.com/capexcat/capexcat.github.io/refs/heads/main/pictures/diagram.png" style="display: block; margin: 0 auto; max-width: 100%; height: auto;">
+            <img src="https://raw.githubusercontent.com/capexcat/capexcat.github.io/refs/heads/main/pictures/1APC/diagram.png" style="display: block; margin: 0 auto; max-width: 100%; height: auto;">
         </p>
       </div>
     </div>
@@ -217,7 +217,7 @@
             informatics since I was a kid. Long story short, there are two types of characters: <b>Internals</b> (which run and exploit memory areas in the original engine) and <b>Externals</b> (which execute external code not found inside the engine).
             I got more interested on the latter since externals were mistified and hoaxed multiple times, so here we are.<br><br>
 
-            <img src="https://raw.githubusercontent.com/capexcat/capexcat.github.io/main/pictures/winmugen.gif" style="display: block; margin: 0 auto;">
+            <img src="https://raw.githubusercontent.com/capexcat/capexcat.github.io/main/pictures/1APC/winmugen.gif" style="display: block; margin: 0 auto; max-width: 100%; height: auto;">
         </p>
       </div>
     </div>
@@ -237,8 +237,8 @@
           To create characters there are several tools at one's disposal, for my projects I rely on <a href="https://mugenarchive.com/forums/downloads.php?do=file&id=9768-fighter-factory-3-0-1-final-virtualltek-systems" target="_blank">Fighter Factory 3</a>.
           The changes performed resemble a really old project of mine called <i>Damnation Mizuchi</i> but since it has been lost, <i>Damnation Mizuchi Clone</i> it is. I want to give a thank you to one of my friends, <a href="https://www.youtube.com/@KingDemonic666" target="_blank">KingDemonic666</a>, he provided the sprites of <i>Salvation Orochi</i> which made the edit
           look better. Here are some screenshots:<br><br>
-          <img src="https://raw.githubusercontent.com/capexcat/capexcat.github.io/refs/heads/main/pictures/dm1.png" style="display: block; margin: 0 auto; max-width: 100%; height: auto;">
-          <img src="https://raw.githubusercontent.com/capexcat/capexcat.github.io/refs/heads/main/pictures/dm2.png" style="display: block; margin: 0 auto; max-width: 100%; height: auto;">
+          <img src="https://raw.githubusercontent.com/capexcat/capexcat.github.io/refs/heads/main/pictures/1APC/dm1.png" style="display: block; margin: 0 auto; max-width: 100%; height: auto;">
+          <img src="https://raw.githubusercontent.com/capexcat/capexcat.github.io/refs/heads/main/pictures/1APC/dm2.png" style="display: block; margin: 0 auto; max-width: 100%; height: auto;">
         </p>
       </div>
     </div>
@@ -252,23 +252,23 @@
           Before proceeding with external technology, there's one last aspect to be accountable of, <b>MUGEN's structure</b>. When downloading it, it contains several files distributed in specific
           folders to run the engine correctly. This by no means is wrong, however, it is seen as rough when proving concepts such as this one. To start "cleaning" it, optional files are removed, which
           leaves the engine like this:<br><br>
-          <img src="https://raw.githubusercontent.com/capexcat/capexcat.github.io/refs/heads/main/pictures/wmstruct.png" style="display: block; margin: 0 auto; max-width: 100%; height: auto;">
+          <img src="https://raw.githubusercontent.com/capexcat/capexcat.github.io/refs/heads/main/pictures/1APC/wmstruct.png" style="display: block; margin: 0 auto; max-width: 100%; height: auto;">
           <br><br>
 
           At this point another tool is necessary to fully polish the game, introducing <a href="https://github.com/sudachen/Molebox" target="_blank">Molebox</a>, a software that converts applications into standalone
           executables by packaging those files needed. It offers a lot of options, however, I'll keep things simple. What you need to know about the screenshot provided below this text is the following:
           Firstly, a source .exe file is chosen to be relinked, secondly, a target .exe file is selected (this is the final repacked executable) and last but not least add all of the mandatory files (characters, configurations,
           fonts...)<br><br>
-          <img src="https://raw.githubusercontent.com/capexcat/capexcat.github.io/refs/heads/main/pictures/Molebox.png" style="display: block; margin: 0 auto; max-width: 100%; height: auto;">
+          <img src="https://raw.githubusercontent.com/capexcat/capexcat.github.io/refs/heads/main/pictures/1APC/Molebox.png" style="display: block; margin: 0 auto; max-width: 100%; height: auto;">
           <br><br>
 
           A minor detail to note is the file <i>select.def</i> which indexes all of the characters and stages into the game. Since it's not intended for the user to access <i>Damnation Mizuchi Clone</i> within the engine, it is 
           key to remove all characters from the list to leave the engine hollow internally:<br><br>
-          <img src="https://raw.githubusercontent.com/capexcat/capexcat.github.io/refs/heads/main/pictures/emptywin.png" style="display: block; margin: 0 auto; max-width: 100%; height: auto;">
+          <img src="https://raw.githubusercontent.com/capexcat/capexcat.github.io/refs/heads/main/pictures/1APC/emptywin.png" style="display: block; margin: 0 auto; max-width: 100%; height: auto;">
           <br><br>
 
           Everything has been done accordingly, <b>we now have a runnable, standalone, isolated copy of the engine:</b><br><br>
-          <img src="https://raw.githubusercontent.com/capexcat/capexcat.github.io/refs/heads/main/pictures/result.png" style="display: block; margin: 0 auto; max-width: 100%; height: auto;">
+          <img src="https://raw.githubusercontent.com/capexcat/capexcat.github.io/refs/heads/main/pictures/1APC/result.png" style="display: block; margin: 0 auto; max-width: 100%; height: auto;">
     </div>
     </div>
 
@@ -280,18 +280,18 @@
         <p style="text-align: justify;">
           The next objective is to reach execution within the game. How is it possible to start a matchup without having indexed characters? Fortunately, there are several command options
           which can be easily accessed via <code style="color: #343a40; background-color: #e1e3e6;">winmugen.exe -h</code> as represented in the following image:<br><br>
-          <img src="https://raw.githubusercontent.com/capexcat/capexcat.github.io/refs/heads/main/pictures/MUGENcmd.png" style="display: block; margin: 0 auto; max-width: 100%; height: auto;">
+          <img src="https://raw.githubusercontent.com/capexcat/capexcat.github.io/refs/heads/main/pictures/1APC/MUGENcmd.png" style="display: block; margin: 0 auto; max-width: 100%; height: auto;">
           <br><br>
 
           From this position it is a matter of understanding the syntax and correctly applying it to the desired case: <code style="color: #343a40; background-color: #e1e3e6;">winmugen.exe -p1 DM -p2 kfm -rounds 2</code>. Random fact: This
           simple event is known as a <b>postman character</b>, which relies on simple automation using .bat or .vbs files. This is the most basic form of an external character:<br><br>
-          <img src="https://raw.githubusercontent.com/capexcat/capexcat.github.io/refs/heads/main/pictures/MUGENcmdexec.png" style="display: block; margin: 0 auto; max-width: 100%; height: auto;">
+          <img src="https://raw.githubusercontent.com/capexcat/capexcat.github.io/refs/heads/main/pictures/1APC/MUGENcmdexec.png" style="display: block; margin: 0 auto; max-width: 100%; height: auto;">
           <br><br>
 
           Such simplicity comes in the cost of an expection. If the repacked copy is executed through it's absolute path, we get an error related to <i>mugen.cfg</i>. I do not know why this
           happens, even if you include the "data" folder with all of the contents it still crashes. Either way, this exception only occurs with absolute paths so <b>execution must share
           directory with MUGEN</b>.<br><br>
-          <img src="https://raw.githubusercontent.com/capexcat/capexcat.github.io/refs/heads/main/pictures/MUGENcfgerr.png" style="display: block; margin: 0 auto; max-width: 100%; height: auto;">
+          <img src="https://raw.githubusercontent.com/capexcat/capexcat.github.io/refs/heads/main/pictures/1APC/MUGENcfgerr.png" style="display: block; margin: 0 auto; max-width: 100%; height: auto;">
         </p>
       </div>
     </div>
@@ -380,12 +380,12 @@
 
           To fully confirm that the code is truly independent, no matter the system, a tool named <a href="https://pestudio.org/" target="_blank">PEStudio</a> can analyze the binary to see dependencies. 
           As seen on the illustration below, <b>it not relies on anything</b>.<br><br>
-          <img src="https://raw.githubusercontent.com/capexcat/capexcat.github.io/refs/heads/main/pictures/pestudio.png" style="display: block; margin: 0 auto; max-width: 100%; height: auto;">
+          <img src="https://raw.githubusercontent.com/capexcat/capexcat.github.io/refs/heads/main/pictures/1APC/pestudio.png" style="display: block; margin: 0 auto; max-width: 100%; height: auto;">
           <br><br>
 
           Moving on to the third step, <b>extracting the shellcode</b>. This task is relatively simple with <i>dumpbin</i> found in the Developer Console of VS2022, after running the following command:
           <code style="color: #343a40; background-color: #e1e3e6;">dumpbin /SECTION:.text /RAWDATA ASM_Test.exe</code> we get the raw programmed code:<br><br>
-          <img src="https://raw.githubusercontent.com/capexcat/capexcat.github.io/refs/heads/main/pictures/dumpbintest.png" style="display: block; margin: 0 auto; max-width: 100%; height: auto;">
+          <img src="https://raw.githubusercontent.com/capexcat/capexcat.github.io/refs/heads/main/pictures/1APC/dumpbintest.png" style="display: block; margin: 0 auto; max-width: 100%; height: auto;">
           <br><br>
 
           The last detail of this project is getting all the hex characters and formatting them in <i>Hexadecimal Escaping</i>: <code style="color: #343a40; background-color: #e1e3e6;">\x48\x31\xc0\x48\x31\xff\x90\x90\x48\x31\xd2\x0f\x05</code>. With this, the shellcode is 100% ready for action.
@@ -444,7 +444,7 @@
           <br>
           Naturally, the injector <b>must be independent as well</b>, which is easier than ASM. The build has to be set as <i>Release x64</i>, disable debug libraries and establish Runtime Library 
           as <b>Multi-threaded (/MT)</b>. Again, to thoroughly check the changes, verify it with PEStudio:<br><br>
-          <img src="https://raw.githubusercontent.com/capexcat/capexcat.github.io/refs/heads/main/pictures/pestudio2.png" style="display: block; margin: 0 auto; max-width: 100%; height: auto;">
+          <img src="https://raw.githubusercontent.com/capexcat/capexcat.github.io/refs/heads/main/pictures/1APC/pestudio2.png" style="display: block; margin: 0 auto; max-width: 100%; height: auto;">
         </p>
       </div>
     </div>
@@ -459,7 +459,7 @@
           I want to give another thank you to <a href="https://www.youtube.com/@MegaStick">MegaStick</a> for testing it out on his machine, visually it's nothing major but it has some
           interesting technological aspects.<br><br>
 
-          <img src="https://raw.githubusercontent.com/capexcat/capexcat.github.io/refs/heads/main/pictures/showcasegif.gif" style="display: block; margin: 0 auto; max-width: 100%; height: auto;">
+          <img src="https://raw.githubusercontent.com/capexcat/capexcat.github.io/refs/heads/main/pictures/1APC/showcasegif.gif" style="display: block; margin: 0 auto; max-width: 100%; height: auto;">
         </p>
       </div>
     </div>
