@@ -192,7 +192,7 @@
       <div class="accordion-content">
         <p style="text-align: justify;">
             An <b>APC Injection</b> is a type of code injection which involves running a payload within the address space of a legitimate process, a thread to be exact.
-            There are many variants of this type of injection: AtomBombing, Early Bird, NtQueueApcThread...While ones target suspended states, others target <a href="https://learn.microsoft.com/en-us/windows/win32/dataxchg/about-atom-tables">Global Atom Tables</a> or native APIs.<br><br>
+            There are many variants of this type of injection: AtomBombing, Early Bird, NtQueueApcThread...While ones target suspended states, others target <a href="https://learn.microsoft.com/en-us/windows/win32/dataxchg/about-atom-tables" target="_blank">Global Atom Tables</a> or native APIs.<br><br>
 
             It is particularly stealthy because it doesn't create a new thread but instead <i>hijacks</i> the execution flow of a legitimate one, thus bypassing minor security checks.
         </p>
@@ -332,7 +332,7 @@
           <img src="https://raw.githubusercontent.com/capexcat/capexcat.github.io/refs/heads/main/pictures/1APC/dumpbin.png" style="display: block; margin: 0 auto; max-width: 100%; height: auto;">
           <br><br>
 
-          These export tables are given by DLLs to allow other modules and programs to use them. While this feature makes modulation easier, it creates <i>external library dependency</i> due to the address pointing made by the <a href="https://en.wikipedia.org/wiki/Portable_Executable#Import_table">Import Address Table</a> (IAT) towards the export table at runtime. There are many ways to bypass the IAT, to make
+          These export tables are given by DLLs to allow other modules and programs to use them. While this feature makes modulation easier, it creates <i>external library dependency</i> due to the address pointing made by the <a href="https://en.wikipedia.org/wiki/Portable_Executable#Import_table" target="_blank">Import Address Table</a> (IAT) towards the export table at runtime. There are many ways to bypass the IAT, to make
           it a little more interesting I have settled for manually resolving <i>WinExec</i>'s address via <b>GetProcAddressByHash</b>, an alternative method of the function <a href="https://learn.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-getprocaddress" target="_blank">GetProcAddress</a>. In essence:<br><br>
           
           <code style="color: #343a40; background-color: #e1e3e6;">Hash WinExec -> Load DllBase and PE Header data -> Extract information from the export table (kernel32.dll) -> Search function name by hash -> Hash function name -> Compare hashes -> Retrieve function address</code><br><br>
@@ -372,7 +372,7 @@
           <br>
 
           Since this project is being handled in x64, <b>it is obligatory to align the program to 16 bits</b> due to a variety of factors such as <a href="https://en.wikipedia.org/wiki/Streaming_SIMD_Extensions" target="_blank">Streaming SIMD Extensions</a> (128-bit instructions) and  
-          <a href="https://learn.microsoft.com/en-us/cpp/build/x64-software-conventions">8-byte offset & shadow space</a>. Fail to comply those requirements and the program crashes by access violation.
+          <a href="https://learn.microsoft.com/en-us/cpp/build/x64-software-conventions" target="_blank">8-byte offset & shadow space</a>. Fail to comply those requirements and the program crashes by access violation.
           Furthermore, the shellcode has to be <i>extracted</i> cleanly and prevented from compiling modifications. In Visual Studio 2022 the following flags have to be modified:<br><br>
 
           <b>Incremental linking /INCREMENTAL: NO</b> - Upon changing a function, the linker merely updates that specific part and jumps to a new location. <b>Ignore all default libraries /NODEFAULTLIB</b> - Default libraries add an IAT, which essentially undoes all the prior work. <b>Disable large addresses /LARGEADDRESSAWARE:NO</b> - The linker may assume specific relocations that assume a wider memory space.
@@ -456,7 +456,7 @@
       <div class="accordion-content">
         <p style="text-align: justify;">
           The result of this project is <b>an Asynchronous Process Call Injection that targets <i>notepad.exe</i> and is able to run without dependencies in several versions of Windows.</b>
-          I want to give another thank you to <a href="https://www.youtube.com/@MegaStick">MegaStick</a> for testing it out on his machine, visually it's nothing major but it has some
+          I want to give another thank you to <a href="https://www.youtube.com/@MegaStick" target="_blank">MegaStick</a> for testing it out on his machine, visually it's nothing major but it has some
           interesting technological aspects.<br><br>
 
           <img src="https://raw.githubusercontent.com/capexcat/capexcat.github.io/refs/heads/main/pictures/1APC/showcasegif.gif" style="display: block; margin: 0 auto; max-width: 100%; height: auto;">
