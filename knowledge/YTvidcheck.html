@@ -1,1 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/capexcat/capexcat.github.io/main/pictures/favicon.png">
+<title>Bypassing YouTube's video checking</title>
 
+<style>
+    :root {
+        --bg: #f8f9fb;
+        --card: #ffffff;
+        --accent: #2563eb;
+        --text: #1f2937;
+        --muted: #6b7280;
+        --border: #e5e7eb;
+    }
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    body {
+        background: var(--bg);
+        color: var(--text);
+        display: flex;
+        justify-content: center;
+        padding: 60px 20px;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 750px;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+    }
+
+    dt {
+    font-weight: 600;
+    color: var(--text);
+    margin-top: 10px;
+    }
+
+    dd {
+    margin-left: 20px;
+    margin-bottom: 10px;
+    font-style: italic;
+    }
+
+    .subtitle {
+        color: var(--muted);
+        margin-bottom: 40px;
+    }
+
+    .accordion-item {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        margin-bottom: 15px;
+        overflow: hidden;
+        transition: 0.2s ease;
+    }
+
+    .accordion-item:hover {
+        border-color: var(--accent);
+    }
+
+    .accordion-header {
+        padding: 16px 20px;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-weight: 500;
+    }
+
+    .accordion-header span {
+        transition: transform 0.3s ease;
+    }
+
+    .accordion-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.35s ease;
+        padding: 0 20px;
+        color: var(--muted);
+    }
+
+    .accordion-content p,
+    .accordion-content dl {
+        padding: 15px 0;
+        line-height: 1.6;
+    }
+
+    .accordion-item.active .accordion-content {
+        max-height: 10000px;
+        padding-bottom: 20px;
+    }
+
+    .accordion-item.active .accordion-header span {
+        transform: rotate(45deg);
+    }
+
+    footer {
+        margin-top: 40px;
+        font-size: 0.9rem;
+        color: var(--muted);
+        text-align: center;
+    }
+
+    .code-block {
+        display: block;          
+        font-family: 'Courier New', monospace;
+        background: #e1e3e6;
+        padding: 20px;
+        border-radius: 8px;
+        line-height: 1.6;
+        overflow-x: auto;       
+        white-space: pre;
+        word-break: normal;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    @media (max-width: 500px) {
+        h1 {
+            font-size: 2rem;
+        }
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+    <h1>Bypassing YouTube's video checking system</h1>
+    <p class="subtitle">A small research on YouTube content detection.</p>
+      <p style="text-align: justify; margin-bottom: 20px;">
+        This entry has the objective of showcasing the result of an investigation performed in YouTube's checking feauture, specifically, <b>how does the platform tackle the detection of content which goes against Terms of Service (ToS)</b>.
+        The main reason behind this research is to see how AI, paired with other detection techniques pair up to perform the task at hand. 
+        <i>It is of upmost importance to note everything explained here has been performed under curiousity viewpoints, <b>by no means does this have the intention to be replicated</b></i>.
+      </p>
+
+    <div class="accordion-item">
+      <div class="accordion-header">
+        <b>I. What is YouTube?</b> <span>+</span>
+      </div>
+      <div class="accordion-content">
+        <p style="text-align: justify;">Placeholder
+        </p>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <div class="accordion-header">
+        <b>II. Video upload process</b> <span>+</span>
+      </div>
+      <div class="accordion-content">
+        <p style="text-align: justify;">Placeholder
+        </p>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <div class="accordion-header">
+        <b>III. System analysis</b> <span>+</span>
+      </div>
+      <div class="accordion-content">
+        <p style="text-align: justify;">Placeholder
+        </p>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <div class="accordion-header">
+        <b>IV. Frame Injection</b> <span>+</span>
+      </div>
+      <div class="accordion-content">
+        <p style="text-align: justify;">Placeholder
+        </p>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <div class="accordion-header">
+        <b>V. Filter hiding</b> <span>+</span>
+      </div>
+      <div class="accordion-content">
+        <p style="text-align: justify;">Placeholder
+        </p>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <div class="accordion-header">
+        <b>VI. Image on image</b> <span>+</span>
+      </div>
+      <div class="accordion-content">
+        <p style="text-align: justify;">Placeholder
+        </p>
+      </div>
+    </div>
+
+      </div>
+    <footer>
+        © 2026 CapeXCat — Hosted on GitHub Pages
+    </footer>
+    <script>
+    const items = document.querySelectorAll(".accordion-item");
+
+    items.forEach(item => {
+        item.querySelector(".accordion-header").addEventListener("click", () => {
+            item.classList.toggle("active");
+        });
+    });
+    </script>
+</body>
+</html>

@@ -291,6 +291,9 @@
           Such simplicity comes in the cost of an expection. If the repacked copy is executed through it's absolute path, we get an error related to <i>mugen.cfg</i>. I do not know why this
           happens, even if you include the "data" folder with all of the contents it still crashes. Either way, this exception only occurs with absolute paths so <b>execution must share
           directory with MUGEN</b>.<br><br>
+
+          <b>Update: This happens because the current working directory was not specified, which can be handled by WinAPI in our executor.</b>
+          <br><br>
           <img src="https://raw.githubusercontent.com/capexcat/capexcat.github.io/refs/heads/main/pictures/1APC/MUGENcfgerr.png" style="display: block; margin: 0 auto; max-width: 100%; height: auto;">
         </p>
       </div>
@@ -479,3 +482,4 @@
     });
     </script>
  </body>
+</html>
