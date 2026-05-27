@@ -141,7 +141,7 @@
     <p class="subtitle">A small research on YouTube's content detection.</p>
       <p style="text-align: justify; margin-bottom: 20px;">
         This entry has the objective of showcasing the result of an investigation about YouTube's checking feauture, specifically, <b>how does the platform tackle the detection of content which goes against Terms of Service (ToS)</b>.
-        The main reason behind this research is to see how AI, paired with other detection techniques pair up to perform the task at hand.<br><br>
+        The main reason behind this research is to see how AI, paired with other detection techniques hold up against certain tricks.<br><br>
         <i>It is of upmost importance to note everything explained here has been performed under curiousity viewpoints, <b>by no means does this have the intention to be replicated</b></i>.
       </p>
 
@@ -221,8 +221,18 @@
           Furthermore, big systems rely on vectors rather than "handcrafted hashes" to perform what is known as a <a href="https://en.wikipedia.org/wiki/Nearest_neighbor_search" target="_blank">Nearest neighbor search</a> with resources such as <a href="https://en.wikipedia.org/wiki/FAISS" target="_blank">FAISS</a>, which practically integrate AI solutions to reduce computational costs.
           <br><br>
           <b>BYPASSING THE SOUND SYSTEM</b>
-          <p>While these systems are pretty well developed, the system can be easily bypassed if one focuses on what it is being analyzed. <i>For instance, if someone was to modify the pitch and velocity and paired it up with an equalizer <b>it would most likely not be detected</b>.</i>
-          </p>
+          While these systems are pretty well developed, the system can be easily bypassed if one focuses on what it is being analyzed. <i>For instance, if someone was to modify the pitch and velocity and paired it up with an equalizer <b>it would most likely not be detected</b>.</i>
+          <br><br>
+          <b>SYSTEM B: VIDEO</b>
+          <br>
+          Back when I first started <i>stress-testing</i> the system in 2020, I noticed that the company had no way of checking the millions of videos on a <i>frame to frame</i> scale. This fact is important because to ensure a proper check, <i>the system would have take chunks of n frames every n seconds</i> and on top of those obtained frames, execute the corresponding algorithms.
+          This is known as <a href="https://arxiv.org/abs/2401.04962" target="_blank">keyframe extraction</a> which is paired with <a href="https://en.wikipedia.org/wiki/Perceptual_hashing" target="_blank">perceptual hashing</a> algorithms such as <a href="https://docs.rs/ahash/latest/ahash/" target="_blank">ahash</a>, <a href="https://benhoyt.com/writings/duplicate-image-detection/" target="_blank">dhash</a> and <a href="https://github.com/aetilius/pHash">pHash</a>.
+          Another major technique to note is the inclusion of <a href="http://www.scholarpedia.org/article/Scale_Invariant_Feature_Transform" target="_blank">local invariant descriptors</a> (<a href="https://en.wikipedia.org/wiki/Scale-invariant_feature_transform" target="_blank">SIFT</a> || <a href="https://en.wikipedia.org/wiki/Speeded_up_robust_features" target="_blank">SURF</a>) that manage to identify imagery even if it's scaled, rotated or cropped.
+          <br><br>
+          <b>BYPASSING THE VIDEO SYSTEM</b>
+          <br>
+          The same problem repeat itself, as sophisticated as these systems are, if one knows how to manipulate the display of the forbidden material taking into account the functionality of algorithms, the system will not detect it.
+          In this case, I present multiple different techniques that accomplish just that.
         </p>
       </div>
     </div>
