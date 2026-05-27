@@ -191,20 +191,37 @@
 
     <div class="accordion-item">
       <div class="accordion-header">
-        <b>III. System analysis</b> <span>+</span>
+        <b>III. System analysis (approximation)</b> <span>+</span>
       </div>
       <div class="accordion-content">
         <p style="text-align: justify;">
           After understanding the process behind an upload from the frontend, it is time to analyze the backend. As expected, the complete details of how the checking system operates is
-          private. However, there is some brief documentation available published by Google, check <a href="https://support.google.com/youtube/answer/2797370" target="_blank"> YouTube Content ID (Google)</a> and<a href="https://en.wikipedia.org/wiki/Content_ID">YouTube Content ID (History)</a> accordingly.
+          private. However, there is some brief documentation available published by Google, check <a href="https://support.google.com/youtube/answer/2797370" target="_blank"> YouTube Content ID (Google)</a>, <a href="https://en.wikipedia.org/wiki/Content_ID">YouTube Content ID (History) and <a href="https://copyrightcheck.online/articles/youtube-content-id-system/" target="_blank">YouTube Content ID (Copyrightcheck)</a> accordingly.
           <br><br>
-          Indeed, there's almost no information. To begin the analysis it is key to understand that a video, as obvious as it is, can contain images and sound. Basing off that premise, it can be
-          deduced the software used is capable of distinguishing between both sources. This essentially provides the following conclusion: <b>There are two systems</b>. In conclusion: While there is no viable
-          way of observing interal operations, the working pipeline can be replicated by researching <a href="https://en.wikipedia.org/wiki/Fingerprint_(computing)">fingerprinting</a> technology.
+          To begin the analysis it is key to understand that a video, as obvious as it is, can contain images and sound. Basing off that premise, it can be
+          deduced the utilized software is capable of distinguishing between both sources. This essentially provides the following conclusion: <b>There are two systems</b>. While there is no viable
+          way of observing internal operations, the working pipeline can be replicated by researching <a href="https://en.wikipedia.org/wiki/Fingerprint_(computing)">fingerprinting technology</a>.
           <br><br>
           <b>SYSTEM A: SOUND</b>
           <br>
-          The sound system will be unpacked first since it is not the core of the entry (still, the knowledge is interesting). How does a computer identify 
+          The sound system will be unpacked first since it is not the core of the entry. How does a computer compare two audios and identify they are equal?
+          The answer is found in the audio's time-frequency representation (<a href="https://en.wikipedia.org/wiki/Spectrogram" target="_blank">Spectrogram</a> || <a href="https://en.wikipedia.org/wiki/Mel-frequency_cepstrum" target="_blank">Mel-Spectrogram</a>) which can be analyzed to spot frequency peaks, rhythmic patterns, harmonic relationship and temportal structure.
+          As one might expect, the representation is obtained by thorough mathematical formulas, I have provided two of them to satisfy curiosity: An approximate representation of a spectogram and spectral peaks:
+          <br><br>
+
+          <img src="https://raw.githubusercontent.com/capexcat/capexcat.github.io/refs/heads/main/pictures/2YTVCHK/f1.png" style="display: block; margin: 0 auto; max-width: 100%; height: auto;">
+          <br>
+          <img src="https://raw.githubusercontent.com/capexcat/capexcat.github.io/refs/heads/main/pictures/2YTVCHK/f2.png" style="display: block; margin: 0 auto; max-width: 100%; height: auto;">
+          <br><br>
+
+          According to sources, YouTube licensed technology from a company called <a href="https://www.audiblemagic.com/company/" target="_blank">AudibleMagic</a> in the mid-2000s. So after using said software, <i>they most likely uploaded all that data into a database to achieve said comparations</i>.
+          Fortunately, some people have made tools with similar functionalities: <a href="https://github.com/acoustid/chromaprint" target="_blank">Chromaprint</a> by <a herf="https://en.wikipedia.org/wiki/AcoustID" target="_blank">AcousticID</a>, <a href="https://github.com/worldveil/dejavu" target="_blank">Dejavu</a> by <a href="https://github.com/worldveil/">WorldVeil</a> or <a href="https://github.com/JorenSix/Panako" target="_blank">Panako</a> by <a href="https://github.com/JorenSix/" target="_blank">JorenSix</a>.
+          <br><br>
+          Furthermore, big systems rely on vectors rather than "handcrafted hashes" to perform what is known as a <a href="https://en.wikipedia.org/wiki/Nearest_neighbor_search" target="_blank">Nearest neighbor search</a> with resources such as <a href="https://en.wikipedia.org/wiki/FAISS">FAISS</a>, which practically integrate AI solutions to reduce computational costs.
+          <br><br>
+          <b>BYPASSING THE SOUND SYSTEM</b>
+          <p>While these systems are pretty well developed, the system can be easily bypassed if one focuses on what it is being analyzed. <i>For instance, if someone was to modify the pitch and velocity and paired it up with an equalizer <b>it would most likely not be detected</b>.</i>
+          </p>
         </p>
       </div>
     </div>
