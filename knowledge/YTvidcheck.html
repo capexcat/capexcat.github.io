@@ -179,7 +179,7 @@
             <dt><b>Details</b></dt>
             <dd>In this section the major configuration of the content takes place; Title, description, thumbnail, playlist, <a href="https://en.wikipedia.org/wiki/Children's_Online_Privacy_Protection_Act" target="_blank">COPPA</a>...</dd>
             <dt><b>Video elements</b></dt>
-            <dd>As the suggests, YouTube provides the option to add elements to the material such as subtitles, end screens and cards.</dd>
+            <dd>As the name suggests, YouTube provides the option to add elements to the material such as subtitles, end screens and cards.</dd>
             <dt><b>Checks</b></dt>
             <dd>The main topic of the entry, visually it alerts the user of copyright infringements or ToS issues, the inner workings are explored in point III.</dd>
             <dt><b>Visibility</b></dt>
@@ -194,7 +194,17 @@
         <b>III. System analysis</b> <span>+</span>
       </div>
       <div class="accordion-content">
-        <p style="text-align: justify;">Placeholder
+        <p style="text-align: justify;">
+          After understanding the process behind an upload from the frontend, it is time to analyze the backend. As expected, the complete details of how the checking system operates is
+          private. However, there is some brief documentation available published by Google, check <a href="https://support.google.com/youtube/answer/2797370" target="_blank"> YouTube Content ID (Google)</a> and<a href="https://en.wikipedia.org/wiki/Content_ID">YouTube Content ID (History)</a> accordingly.
+          <br><br>
+          Indeed, there's almost no information. To begin the analysis it is key to understand that a video, as obvious as it is, can contain images and sound. Basing off that premise, it can be
+          deduced the software used is capable of distinguishing between both sources. This essentially provides the following conclusion: <b>There are two systems</b>. In conclusion: While there is no viable
+          way of observing interal operations, the working pipeline can be replicated by researching <a href="https://en.wikipedia.org/wiki/Fingerprint_(computing)">fingerprinting</a> technology.
+          <br><br>
+          <b>SYSTEM A: SOUND</b>
+          <br>
+          The sound system will be unpacked first since it is not the core of the entry (still, the knowledge is interesting). How does a computer identify 
         </p>
       </div>
     </div>
