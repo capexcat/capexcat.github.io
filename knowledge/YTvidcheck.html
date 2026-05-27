@@ -215,24 +215,27 @@
           <img src="https://raw.githubusercontent.com/capexcat/capexcat.github.io/refs/heads/main/pictures/2YTVCHK/f2.png" style="display: block; margin: 0 auto; max-width: 100%; height: auto;">
           <br><br>
 
-          According to sources, YouTube licensed technology from a company called <a href="https://www.audiblemagic.com/company/" target="_blank">AudibleMagic</a> in the mid-2000s. So after using said software, <i>they most likely uploaded all that data into a database to achieve said comparations</i>.
+          According to sources, YouTube licensed technology from a company called <a href="https://www.audiblemagic.com/identification/" target="_blank">AudibleMagic</a> in the mid-2000s. So after using said software, <i>they most likely uploaded all that data into a database to achieve said comparations</i>.
           Fortunately, some people have made tools with similar functionalities: <a href="https://github.com/acoustid/chromaprint" target="_blank">Chromaprint</a> by <a herf="https://en.wikipedia.org/wiki/AcoustID" target="_blank">AcousticID</a>, <a href="https://github.com/worldveil/dejavu" target="_blank">Dejavu</a> by <a href="https://github.com/worldveil/" target="_blank">WorldVeil</a> or <a href="https://github.com/JorenSix/Panako" target="_blank">Panako</a> by <a href="https://github.com/JorenSix/" target="_blank">JorenSix</a>.
           <br><br>
           Furthermore, big systems rely on vectors rather than "handcrafted hashes" to perform what is known as a <a href="https://en.wikipedia.org/wiki/Nearest_neighbor_search" target="_blank">Nearest neighbor search</a> with resources such as <a href="https://en.wikipedia.org/wiki/FAISS" target="_blank">FAISS</a>, which practically integrate AI solutions to reduce computational costs.
           <br><br>
           <b>BYPASSING THE SOUND SYSTEM</b>
+          <br>
           While these systems are pretty well developed, the system can be easily bypassed if one focuses on what it is being analyzed. <i>For instance, if someone was to modify the pitch and velocity and paired it up with an equalizer <b>it would most likely not be detected</b>.</i>
           <br><br>
           <b>SYSTEM B: VIDEO</b>
           <br>
           Back when I first started <i>stress-testing</i> the system in 2020, I noticed that the company had no way of checking the millions of videos on a <i>frame to frame</i> scale. This fact is important because to ensure a proper check, <i>the system would have take chunks of n frames every n seconds</i> and on top of those obtained frames, execute the corresponding algorithms.
-          This is known as <a href="https://arxiv.org/abs/2401.04962" target="_blank">keyframe extraction</a> which is paired with <a href="https://en.wikipedia.org/wiki/Perceptual_hashing" target="_blank">perceptual hashing</a> algorithms such as <a href="https://docs.rs/ahash/latest/ahash/" target="_blank">ahash</a>, <a href="https://benhoyt.com/writings/duplicate-image-detection/" target="_blank">dhash</a> and <a href="https://github.com/aetilius/pHash">pHash</a>.
+          This is known as <a href="https://arxiv.org/abs/2401.04962" target="_blank">keyframe extraction</a> which is paired with <a href="https://en.wikipedia.org/wiki/Perceptual_hashing" target="_blank">perceptual hashing</a> algorithms such as <a href="https://docs.rs/ahash/latest/ahash/" target="_blank">aHash</a>, <a href="https://benhoyt.com/writings/duplicate-image-detection/" target="_blank">dHash</a> and <a href="https://github.com/aetilius/pHash">pHash</a>.
           Another major technique to note is the inclusion of <a href="http://www.scholarpedia.org/article/Scale_Invariant_Feature_Transform" target="_blank">local invariant descriptors</a> (<a href="https://en.wikipedia.org/wiki/Scale-invariant_feature_transform" target="_blank">SIFT</a> || <a href="https://en.wikipedia.org/wiki/Speeded_up_robust_features" target="_blank">SURF</a>) that manage to identify imagery even if it's scaled, rotated or cropped.
           <br><br>
           <b>BYPASSING THE VIDEO SYSTEM</b>
           <br>
           The same problem repeat itself, as sophisticated as these systems are, if one knows how to manipulate the display of the forbidden material taking into account the functionality of algorithms, the system will not detect it.
           In this case, I present multiple different techniques that accomplish just that.
+          <br><br>
+          <img src="https://raw.githubusercontent.com/capexcat/capexcat.github.io/refs/heads/main/pictures/2YTVCHK/ytdiagram2.png" style="display: block; margin: 0 auto; max-width: 100%; height: auto;">
         </p>
       </div>
     </div>
